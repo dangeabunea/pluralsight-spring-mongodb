@@ -3,6 +3,10 @@ package pluralsight.airportmanagement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/*
+Spring application entry point
+ */
+
 @SpringBootApplication
 public class AirportManagementApplication {
 
