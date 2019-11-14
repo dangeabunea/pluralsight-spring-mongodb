@@ -1,13 +1,13 @@
-package globamontics.airportmgmt;
+package pluralsight.airportmanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AirportMgmtApplication {
+public class AirportManagementApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AirportMgmtApplication.class, args);
+        SpringApplication.run(AirportManagementApplication.class, args);
     }
 
 }
