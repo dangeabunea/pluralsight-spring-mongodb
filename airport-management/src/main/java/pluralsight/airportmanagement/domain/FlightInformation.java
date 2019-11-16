@@ -1,10 +1,9 @@
 package pluralsight.airportmanagement.domain;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class FlightInformation {
-    private UUID id;
+    private String id;
     private String departureCity;
     private String destinationCity;
     private FlightType type;
@@ -12,8 +11,13 @@ public class FlightInformation {
     private int durationMin;
     private LocalDate departureDate;
     private Aircraft aircraft;
+    private LocalDate createdAt;
 
-    public UUID getId() {
+    public FlightInformation(){
+        this.createdAt = LocalDate.now();
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -71,5 +75,9 @@ public class FlightInformation {
 
     public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 }

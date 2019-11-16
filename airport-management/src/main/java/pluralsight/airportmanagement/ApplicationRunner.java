@@ -10,8 +10,9 @@ is executed after the application is bootstrapped
 
 @Component
 public class ApplicationRunner implements CommandLineRunner {
+
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Application executed");
+        System.out.println("Application started...");
     }
 }
