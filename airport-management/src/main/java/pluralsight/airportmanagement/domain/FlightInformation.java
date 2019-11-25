@@ -3,6 +3,7 @@ package pluralsight.airportmanagement.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,12 +19,12 @@ public class FlightInformation {
     private String internalId;
 
     @Field("departure")
-    @Indexed
     private String departureCity;
 
     @Field("destination")
-    @Indexed
     private String destinationCity;
+
+    private String description;
 
     private FlightType type;
     private boolean isDelayed;
@@ -101,5 +102,17 @@ public class FlightInformation {
 
     public LocalDate getCreatedAt() {
         return createdAt;
+    }
+
+    public String getInternalId() {
+        return internalId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
