@@ -7,11 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Document("flights")
 public class FlightInformation {
     @Id
     private String id;
+
+    @Indexed(unique = true)
+    private String internalId;
 
     @Field("departure")
     @Indexed
@@ -30,8 +34,9 @@ public class FlightInformation {
     @Transient
     private LocalDate createdAt;
 
-    public FlightInformation(){
+    public FlightInformation() {
         this.createdAt = LocalDate.now();
+        this.internalId = UUID.randomUUID().toString();
     }
 
     public String getId() {
