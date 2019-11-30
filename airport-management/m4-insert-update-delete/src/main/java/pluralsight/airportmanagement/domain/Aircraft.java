@@ -1,7 +1,5 @@
 package pluralsight.airportmanagement.domain;
 
-import org.springframework.data.mongodb.core.index.TextIndexed;
-
 public class Aircraft {
     private String model;
     private int nbSeats;
