@@ -29,15 +29,15 @@ public class DatabaseSeederRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        empty();
-        seed();
-    }
-
-    private void empty(){
 
     }
 
     private void seed(){
+        //TODO: Add implementation
+    }
 
+
+    private void empty(){
+        //TODO: Add implementation
     }
 }

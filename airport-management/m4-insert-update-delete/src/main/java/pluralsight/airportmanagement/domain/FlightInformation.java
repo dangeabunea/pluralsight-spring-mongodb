@@ -19,11 +19,14 @@ public class FlightInformation {
     private String internalId;
 
     @Field("departure")
+    @TextIndexed
     private String departureCity;
 
     @Field("destination")
+    @TextIndexed
     private String destinationCity;
 
+    @TextIndexed(weight = 2)
     private String description;
 
     private FlightType type;
