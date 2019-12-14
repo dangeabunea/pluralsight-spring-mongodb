@@ -29,14 +29,28 @@ public class ApplicationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        markAllFlightsToRomeAsDelayed();
+        removeFlightsWithDurationLessThanTwoHours();
     }
 
-    void markAllFlightsFromRomeAsDelayed() {
-        //TODO: implement
+    void markAllFlightsToRomeAsDelayed() {
+        Query departingFromRome = Query.query(
+                Criteria.where("destination").is("Rome")
+        );
+
+        Update setDelayed = Update.update("isDelayed", true);
+
+        this.mongoTemplate.updateMulti(
+                departingFromRome,
+                setDelayed,
+                FlightInformation.class);
     }
 
-    void removeFlightsWithDurationLessThanTwoHours(){
-        //TODO: implement
+    void removeFlightsWithDurationLessThanTwoHours() {
+        Query lessThanTwoHours = Query.query(
+                        Criteria.where("duration").lt(120)
+                );
+
+        mongoTemplate.findAllAndRemove(lessThanTwoHours, FlightInformation.class);
     }
 }
