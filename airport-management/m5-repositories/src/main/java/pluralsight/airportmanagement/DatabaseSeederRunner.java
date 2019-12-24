@@ -1,11 +1,9 @@
 package pluralsight.airportmanagement;
 
-import org.bson.types.ObjectId;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+import pluralsight.airportmanagement.db.FlightInformationRepository;
 import pluralsight.airportmanagement.domain.Aircraft;
 import pluralsight.airportmanagement.domain.FlightInformation;
 import pluralsight.airportmanagement.domain.FlightType;
@@ -21,10 +19,10 @@ This component should populate the database if empty.
 @Component
 @Order(1)
 public class DatabaseSeederRunner implements CommandLineRunner {
-    private MongoTemplate mongoTemplate;
+    private FlightInformationRepository repository;
 
-    public DatabaseSeederRunner(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
+    public DatabaseSeederRunner(FlightInformationRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -101,11 +99,11 @@ public class DatabaseSeederRunner implements CommandLineRunner {
                         flightFive,
                         flightSix
                 );
-        this.mongoTemplate.insertAll(flights);
+        this.repository.insert(flights);
     }
 
 
     private void empty() {
-        this.mongoTemplate.remove(new Query(), FlightInformation.class);
+        this.repository.deleteAll();
     }
 }

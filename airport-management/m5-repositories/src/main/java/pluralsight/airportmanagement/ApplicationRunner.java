@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import pluralsight.airportmanagement.db.FlightInformationRepository;
 import pluralsight.airportmanagement.domain.FlightInformation;
 import pluralsight.airportmanagement.domain.FlightPrinter;
 
@@ -21,36 +22,14 @@ process
 @Service
 @Order(2)
 public class ApplicationRunner implements CommandLineRunner {
-    private MongoTemplate mongoTemplate;
+    private FlightInformationRepository repository;
 
-    public ApplicationRunner(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
+    public ApplicationRunner(FlightInformationRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        markAllFlightsToRomeAsDelayed();
-        removeFlightsWithDurationLessThanTwoHours();
-    }
 
-    void markAllFlightsToRomeAsDelayed() {
-        Query departingFromRome = Query.query(
-                Criteria.where("destination").is("Rome")
-        );
-
-        Update setDelayed = Update.update("isDelayed", true);
-
-        this.mongoTemplate.updateMulti(
-                departingFromRome,
-                setDelayed,
-                FlightInformation.class);
-    }
-
-    void removeFlightsWithDurationLessThanTwoHours() {
-        Query lessThanTwoHours = Query.query(
-                        Criteria.where("duration").lt(120)
-                );
-
-        mongoTemplate.findAllAndRemove(lessThanTwoHours, FlightInformation.class);
     }
 }
