@@ -99,11 +99,9 @@ public class DatabaseSeederRunner implements CommandLineRunner {
                         flightFive,
                         flightSix
                 );
-        this.repository.insert(flights);
     }
 
 
     private void empty() {
-        this.repository.deleteAll();
     }
 }
