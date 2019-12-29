@@ -39,47 +39,22 @@ public class ApplicationRunner implements CommandLineRunner {
     }
 
     private void printById(String id) {
-        System.out.println("Flight " + id);
 
-        FlightInformation flight = this.repository
-                .findById(id)
-                .get();
-        FlightPrinter.print(Arrays.asList(flight));
     }
 
     private void delayFlight(String id, int duration) {
-        FlightInformation flight = this.repository
-                .findById(id)
-                .get();
 
-        flight.setDurationMin(flight.getDurationMin() + duration);
-
-        this.repository.save(flight);
-
-        System.out.println("Updated flight " + id + "\n");
     }
 
     private void removeFlight(String id) {
-        this.repository.deleteById(id);
 
-        System.out.println("Deleted flight " + id + "\n");
     }
 
     private void printByDepartureAndDestination(String dep, String dst) {
-        System.out.println("Flights from " + dep + " to " + dst);
 
-        List<FlightInformation> flights = this.repository
-                .findByDepartureCityAndDestinationCity(dep, dst);
-
-        FlightPrinter.print(flights);
     }
 
     private void printByMinNbSeats(int minNbSeats) {
-        System.out.println("Flights by min nb seats " + minNbSeats);
 
-        List<FlightInformation> flights = this.repository
-                .findByMinAircraftNbSeats(200);
-
-        FlightPrinter.print(flights);
     }
 }

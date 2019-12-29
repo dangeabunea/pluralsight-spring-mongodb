@@ -98,32 +98,11 @@ public class DatabaseSeederRunner implements CommandLineRunner {
         flightSix.setDurationMin(110);
         flightSix.setAircraft(new Aircraft("A321 Neo", 200));
 
-        // Seed
-        List<FlightInformation> flights = Arrays.asList(
-                flightOne,
-                flightTwo,
-                flightThree,
-                flightFour,
-                flightFive,
-                flightSix
-        );
 
-        this.repository.insert(flights);
-
-        // Count
-        long count = this.repository.count();
-        System.out.println("Total flights in database : " + count);
-
-        // Print
-        List<FlightInformation> flightsInDb = this.repository
-                .findAll(Sort.by("departureCity").ascending());
-        FlightPrinter.print(flightsInDb);
-
-        System.out.println("--- Seeder finished ---\n");
     }
 
 
     private void empty() {
-        this.repository.deleteAll();
+
     }
 }

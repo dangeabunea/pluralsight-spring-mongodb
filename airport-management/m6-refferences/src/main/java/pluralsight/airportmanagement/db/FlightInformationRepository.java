@@ -11,8 +11,4 @@ import java.util.List;
 public interface FlightInformationRepository
         extends MongoRepository<FlightInformation, String> {
 
-    List<FlightInformation> findByDepartureCityAndDestinationCity(String departure, String destination);
-
-    @Query("{'aircraft.nbSeats' : {$gte: ?0}}")
-    List<FlightInformation> findByMinAircraftNbSeats(int minNbSeats);
 }
