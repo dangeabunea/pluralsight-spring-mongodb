@@ -20,6 +20,7 @@ public class FlightInformation {
     private String internalId;
 
     private Airport departure;
+
     private Airport destination;
 
     private Aircraft aircraft;

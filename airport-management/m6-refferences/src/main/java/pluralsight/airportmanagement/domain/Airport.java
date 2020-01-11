@@ -33,4 +33,16 @@ public class Airport {
     public int getPassengersServed() {
         return passengersServed;
     }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassengersServed(int passengersServed) {
+        this.passengersServed = passengersServed;
+    }
 }
