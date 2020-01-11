@@ -33,12 +33,4 @@ public class Airport {
     public int getPassengersServed() {
         return passengersServed;
     }
-
-    @Override
-    public String toString() {
-        return String.format("%-12s %-12s %-10s",
-                this.name,
-                this.city,
-                this.passengersServed);
-    }
 }

@@ -7,13 +7,11 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 import pluralsight.airportmanagement.db.AirportRepository;
 import pluralsight.airportmanagement.db.FlightInformationRepository;
-import pluralsight.airportmanagement.domain.Aircraft;
-import pluralsight.airportmanagement.domain.Airport;
-import pluralsight.airportmanagement.domain.FlightInformation;
-import pluralsight.airportmanagement.domain.FlightType;
+import pluralsight.airportmanagement.domain.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 /*
 This component should populate the database if empty.
@@ -80,7 +78,11 @@ public class DatabaseSeederRunner implements CommandLineRunner {
         flightTwo.setAircraft(new Aircraft("747", 300));
 
         // Seed
-        this.flightRepository.insert(Arrays.asList(flightOne,flightTwo));
+        List<FlightInformation> fligths = Arrays.asList(flightOne,flightTwo);
+        this.flightRepository.insert(fligths);
+
+        // Print
+        FlightPrinter.print(fligths);
     }
 
 
