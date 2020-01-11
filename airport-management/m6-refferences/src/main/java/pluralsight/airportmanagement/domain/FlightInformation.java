@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,28 +19,17 @@ public class FlightInformation {
     @Indexed(unique = true)
     private String internalId;
 
-    @Field("departure")
-    @TextIndexed
-    private String departureCity;
+    private Airport departure;
+    private Airport destination;
 
-    @Field("destination")
-    @TextIndexed
-    private String destinationCity;
-
-    @TextIndexed(weight = 2)
-    private String description;
+    private Aircraft aircraft;
 
     private FlightType type;
     private boolean isDelayed;
     private int durationMin;
     private LocalDate departureDate;
-    private Aircraft aircraft;
-
-    @Transient
-    private LocalDate createdAt;
 
     public FlightInformation() {
-        this.createdAt = LocalDate.now();
         this.internalId = UUID.randomUUID().toString();
     }
 
@@ -49,22 +39,6 @@ public class FlightInformation {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDepartureCity() {
-        return departureCity;
-    }
-
-    public void setDepartureCity(String departureCity) {
-        this.departureCity = departureCity;
-    }
-
-    public String getDestinationCity() {
-        return destinationCity;
-    }
-
-    public void setDestinationCity(String destinationCity) {
-        this.destinationCity = destinationCity;
     }
 
     public FlightType getType() {
@@ -107,19 +81,25 @@ public class FlightInformation {
         this.aircraft = aircraft;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
     public String getInternalId() {
         return internalId;
     }
 
-    public String getDescription() {
-        return description;
+    public Airport getDeparture() {
+        return departure;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDeparture(Airport departure) {
+        this.departure = departure;
     }
+
+    public Airport getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Airport destination) {
+        this.destination = destination;
+    }
+
+
 }
