@@ -78,6 +78,13 @@ public class DatabaseSeederRunner implements CommandLineRunner {
         flightTwo.setAircraft(new Aircraft("747", 300));
 
         // Seed
+
+
+        List<FlightInformation> flights = Arrays.asList(flightOne, flightTwo);
+        this.flightRepository.insert(flights);
+
+        // Print
+        FlightPrinter.print(flights);
     }
 
 

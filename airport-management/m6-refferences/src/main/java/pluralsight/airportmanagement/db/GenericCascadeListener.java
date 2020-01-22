@@ -11,6 +11,26 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 
+@Component
 public class GenericCascadeListener extends AbstractMongoEventListener<Object> {
+    private MongoTemplate mongoTemplate;
 
+    public GenericCascadeListener(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+
+    @Override
+    public void onBeforeConvert(BeforeConvertEvent event) {
+        Object document = event.getSource();
+        ReflectionUtils.doWithFields(document.getClass(), docField -> {
+            ReflectionUtils.makeAccessible(docField);
+
+            if (docField.isAnnotationPresent(DBRef.class)) {
+                final Object fieldValue = docField.get(document);
+
+                // Save child
+                this.mongoTemplate.save(fieldValue);
+            }
+        });
+    }
 }

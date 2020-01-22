@@ -7,6 +7,17 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class GenericMongoAuditListener extends AbstractMongoEventListener<Object> {
+    @Override
+    public void onAfterSave(AfterSaveEvent<Object> event) {
+        Object obj = event.getSource();
+        System.out.println(LocalDateTime.now() + " Saved document " + obj);
+    }
 
+    @Override
+    public void onAfterDelete(AfterDeleteEvent<Object> event) {
+        Object obj = event.getSource();
+        System.out.println(LocalDateTime.now() + " Deleted document " + obj);
+    }
 }

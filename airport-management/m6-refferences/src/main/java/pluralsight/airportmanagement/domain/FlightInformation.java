@@ -19,8 +19,10 @@ public class FlightInformation {
     @Indexed(unique = true)
     private String internalId;
 
+    @DBRef
     private Airport departure;
 
+    @DBRef
     private Airport destination;
 
     private Aircraft aircraft;
