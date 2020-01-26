@@ -31,12 +31,6 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <!-- mongobee; needed for migrations -->
-        <dependency>
-            <groupId>com.github.mongobee</groupId>
-            <artifactId>mongobee</artifactId>
-            <version>0.13</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
