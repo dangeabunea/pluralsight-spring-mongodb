@@ -2,7 +2,6 @@ package pluralsight.airportmanagement;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import pluralsight.airportmanagement.db.AirportRepository;
 import pluralsight.airportmanagement.db.FlightInformationRepository;
 import pluralsight.airportmanagement.domain.FlightInformation;
 import pluralsight.airportmanagement.domain.FlightPrinter;

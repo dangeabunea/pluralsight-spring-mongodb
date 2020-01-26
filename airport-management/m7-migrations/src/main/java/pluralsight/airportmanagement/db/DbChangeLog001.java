@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-@ChangeLog(order = "001")
 public class DbChangeLog001 {
-
 
 }
