@@ -13,5 +13,13 @@ public class DatabaseTestConfiguration {
         return new GenericCascadeListener(mongoTemplate);
     }
 
+    @Bean
+    public MongoDbFactory mongoDbFactory() throws Exception {
+        return new SimpleMongoClientDbFactory("mongodb://localhost:27017/db-tests");
+    }
 
+    @Bean
+    MongoTemplate mongoTemplate(MongoDbFactory factory) {
+        return new MongoTemplate(factory);
+    }
 }
